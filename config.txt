@@ -1,0 +1,4 @@
+pleses enter capital "R" for rotation cipher or capital "S" for substitution Cypher into the box below
+[]
+if using r
+input key 
