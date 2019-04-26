@@ -20,6 +20,7 @@ void caps(int counter, int counter2);
 void rot(int counter, int numOfrotation);
 void subC(int counter2);
 void subCD(int counter2);
+void subCDN(int counter);
 
 int main(){
     
@@ -63,6 +64,7 @@ int main(){
    printf("Please press R if you wish to uses the  rotation cipher \n or S substitution cipher\n :");
     char keyRS;
     char keyED;
+    char keyYN;
     scanf("%c", &keyRS);
     int i = 0;
     while (i <1){
@@ -132,9 +134,16 @@ int main(){
                         
                     
                 } else if(keyED==alphabet[0][3]||keyED==alphabet[1][3]){
+                    scanf("%c", &keyYN);
                     i = 1;
-                    void subCd(int counter3);
+                    printf("if you have a key press Y if not press N");
+                    if(keyYN==alphabet[0][24]||keyYN==alphabet[1][24]){
+                        void subCd(int counter3);
+                        
+                    }else if(keyYN==alphabet[0][13]||keyYN==alphabet[1][13]){
+                        void subCDN(int counter);
                     
+                }
                     for (int i= 0;i<=(counter);i++){
                         printf("%c ", word[i]);
                         //fprintf(outputF,"%c", outText[i]);
@@ -194,7 +203,9 @@ void subC(int counter2){
 }
 
 
-
+void subCDN(int counter){
+    
+}
 
 void subCD(int counter2){
     
