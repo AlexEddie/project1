@@ -2,12 +2,11 @@
 
 
 int numberText[500];
-char wordLibray[10001][16];
 char text[500];
-char word[500][16];
+//char word[500][16];
 char CiphLib[30];
 char outText[500];
-
+char wordLibray[10001][16];
 
 char  alphabet[2][26] = {{"A""B""C""D""E""F""G""H""I""J""K""L""M""N""O""P""Q""R""S""T""U""V""W""X""Y""Z"},
      {"a""b""c""d""e""f""g""h""i""j""k""l""m""n""o""p""q""r""s""t""u""v""w""x""y""z"}};
@@ -31,7 +30,7 @@ int main(){
     int counter2 = 0; 
     
     char a[16];
-    char b[16];
+    //char b[16];
     //int counter3 = 0;
     
     FILE * inputFile;
@@ -42,6 +41,7 @@ int main(){
     inputFile = fopen("inputStuff.txt", "r");
     cipherLibrary = fopen("SubstitutionCipherLibrary.txt","r");
    
+   /*
      for (int n=0; n<500; n++){
         fscanf(inputFile,"%s", b );
         for (int m =0; m<16;m++){
@@ -49,7 +49,7 @@ int main(){
         }
     }
     
-  
+  */
    for (int n=0; n<10001; n++){
         fscanf(wordLib,"%s", a);
         for (int m =0; m<16;m++){
@@ -207,14 +207,14 @@ void subCDN(int counter){
 void rotNK(int counter){
     int bool1= 0;
     //int score=0;
-    char wordArray[26][30];
+    char wordArray[27][31];
     
     for (int v = 0; v<26 ; v++){
         
         for (int j = 0; j<10; j++){
             
             for (int d =0; d<28; d++){
-                printf("%c = %c\n", text[j] , alphabet[0][d]);
+                //printf("--%c = %c..\n", text[j] , alphabet[0][d]);
                 if (text[j] == alphabet[0][d]){
                     
                     bool1 = 1;
@@ -232,7 +232,14 @@ void rotNK(int counter){
             }
         }
     }
-    
+    for(int a =0; a<26 ;a++){
+        for (int f = 0; f <30; f++){
+            printf("%c ",wordArray[a][f]);
+        }
+        printf("\n");
+
+    }
+
     
    
    //printf(
