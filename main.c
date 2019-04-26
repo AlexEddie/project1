@@ -30,22 +30,19 @@ int main(){
     //int counter3 = 0;
     
     FILE * inputFile;
-    //FILE * outputF;
     FILE * cipherLibrary;
     
-    
-    
-
     inputFile = fopen("inputStuff.txt", "r");
     cipherLibrary = fopen("SubstitutionCipherLibrary.txt","r");
-    //outputF = fopen("output.txt", "w");
     
-    /*while (feof(inputFile) == 0 ){
+    int c1 = 0;
+    
+    while (feof(cipherLibrary) == 0 ){
         char w;
-        fscanf(inputFile, "%s", &w);
-        word[counter3]= w;
-         counter3++;
-    }*/
+        fscanf(cipherLibrary, "%c", &w);
+        CiphLib[c1]= w;
+        c1++;
+    }
     
     while (feof(inputFile) == 0 ){
         fscanf(inputFile, "%c", &character1);
@@ -58,7 +55,7 @@ int main(){
 
     caps(counter, counter2);
     
-   printf("Please press R if you wish to uses the  rotation cipher \n or S substitution cipher\n :");
+    printf("----------------------------------------- \n \nPlease press R if you wish to uses the  rotation cipher \nor S substitution cipher\n:");
     char keyRS;
     char keyED;
     char keyYN;
@@ -67,15 +64,13 @@ int main(){
     int h = 0;
     while (i <1){
         if(keyRS==alphabet[0][17]||keyRS==alphabet[1][17]){
-            
             i =1;
-            
             while (h<1){
-                printf("if you wish to encrypt please press E \n if you wish do decrypt pressd D \n :");
+                printf("----------------------------------------- \n \nif you wish to encrypt please press E \n if you wish do decrypt pressd D \n:");
                 scanf("%c", &keyED);
                 if(keyED==alphabet[0][4]||keyED==alphabet[1][4]){
                     h=1;
-                    printf("please ender the encryption key this can be between 1 and 26 \n :");
+                    printf("----------------------------------------- \n \nplease ender the encryption key this can be between 1 and 26 \n:");
                     int nor;
                     scanf("%d", &nor);
                     if ((nor>0)&&(nor<26)){
@@ -85,104 +80,59 @@ int main(){
                     }
                 }else if(keyED==alphabet[0][3]||keyED==alphabet[1][3]){//decode
                     h = 1;
-                    printf("please ender the decryption key this can be between 1 and 26 \n :");
-                     int nor;
+                    printf("----------------------------------------- \n \nplease ender the decryption key this can be between 1 and 26 \n:");
+                    int nor;
                     scanf("%d", &nor);
                     if ((nor>0)&&(nor<=26)){
-                        
-                        int numOfrotation = ((25 - (nor-1)));
+                        int numOfrotation = ((26 - (nor-1)));
                         if (numOfrotation<0){
-                            numOfrotation = numOfrotation+25;
+                            numOfrotation = numOfrotation+26;
                         }          
                         rot(counter, numOfrotation);
                         print(counter);
                     }
                 }
-}
-            
-// for sub cypher
+            }   // for sub cypher
         } else if (keyRS==alphabet[0][18]||keyRS==alphabet[1][18]){
             i =1;
+             printf("----------------------------------------- \n \nif you wish to encrypt please press E \nif you wish do decrypt pressd D \n:");
             while (h<1){
-            printf("if you wish to encrypt please press E \n if you wish do decrypt pressd D \n :");
-                
-            scanf("%c", &keyED);
+               // printf("if you wish to encrypt please press E \n if you wish do decrypt pressd D \n :");  
+                scanf("%c", &keyED);
                 //if e is pressed
-            if(keyED==alphabet[0][4]||keyED==alphabet[1][4]){
+                if(keyED==alphabet[0][4]||keyED==alphabet[1][4]){
                     h=1;
-                    subC(counter2);
+                    subC(counter);
+                    print(counter); 
                         // if d is pressed
                 }else if(keyED==alphabet[0][3]||keyED==alphabet[1][3]){
                     h = 1;
-                   printf("if you have a key press Y if not press N");
+                    printf("----------------------------------------- \n \nif you have a key press Y if not press N \n:");
                     int r = 0;
                     while (r<1){
                         scanf("%c", &keyYN);
                         if(keyYN==alphabet[0][24]||keyYN==alphabet[1][24]){
                             r=1;
                             subCD(counter);
-                            print(counter);
-                        
+                            print(counter);    
                         }else if(keyYN==alphabet[0][13]||keyYN==alphabet[1][13]){
                             r=1;
                             subCDN(counter);
                             print(counter);
-                        }
-                    }
-
+                        }   
                     }
                 }
-            }
-
-
-             
-            }
-       // fclose (outputF);
-    
-
-    
-    
- 
-  return 0;
-}
-
-void print(int counter){
-    FILE * outputF;
-    outputF = fopen("output.txt", "w");
-    for (int i= 0;i<=(counter-1);i++){
-        printf("%c", outText[i]);
-        fprintf(outputF,"%c", outText[i]);
+            }   
+        } 
     }
-    fclose (outputF);
-}
-// rotation cipher
-
-void rot(int counter, int numOfrotation){
-       for (int z=0; z<=counter; z++){
-       int bool1 = 0;
-       for(int q = 0; q<=28;q++){
-            if (text[z]==alphabet[0][q]){
-                bool1 = 1;
-                if ((q + numOfrotation)<=25){
-                    numberText[z]=q+numOfrotation;
-                    outText[z]= alphabet[0][q+numOfrotation];
-                }else {
-                    numberText[z]= ((q+numOfrotation)-25);
-                    outText[z]= alphabet[0][(q+numOfrotation)-25];
-                }
-            }else if((q>=27) && bool1==0){
-                outText[z] = text[z];
-            }
-        }
-   }
-  
+  return 0;
 }
 
 
 //Substitution Cipher encoder 
 
-void subC(int counter2){
-     for (int x = 0; x<=counter2; x++){
+void subC(int counter){
+     for (int x = 0; x<=counter; x++){
          int bool2 = 0;
          for (int z = 0; z<=28; z++){
              if (text[x]==alphabet[0][z]){
@@ -193,7 +143,6 @@ void subC(int counter2){
             }
         }
     }
-    
 }
 
 
@@ -221,6 +170,28 @@ void subCDN(int counter){
 
 
 
+// rotation cipher 
+
+void rot(int counter, int numOfrotation){
+    for (int z=0; z<=counter; z++){
+        int bool1 = 0;
+        for(int q = 0; q<=28;q++){
+            if (text[z]==alphabet[0][q]){
+                bool1 = 1;
+                if ((q + numOfrotation)<=25){
+                    numberText[z]=q+numOfrotation;
+                    outText[z]= alphabet[0][q+numOfrotation];
+                }else {
+                    numberText[z]= ((q+numOfrotation)-26);
+                    outText[z]= alphabet[0][(q+numOfrotation)-26];
+                }
+            }else if((q>=27) && bool1==0){
+                outText[z] = text[z];
+            }
+        }
+    }
+}
+
 
 void caps(int counter, int counter2){
       for (int k = 0; k<= counter;k++){
@@ -240,3 +211,14 @@ void caps(int counter, int counter2){
 }
 
 
+
+
+void print(int counter){
+    FILE * outputF;
+    outputF = fopen("output.txt", "w");
+    for (int i= 0;i<=(counter-1);i++){
+        printf("%c", outText[i]);
+        fprintf(outputF,"%c", outText[i]);
+    }
+    fclose (outputF);
+}
