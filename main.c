@@ -6,7 +6,7 @@ char text[500];
 //char word[500];
 char CiphLib[30];
 char outText[500];
-//char comword[1000];
+char comword[1000];
 
 char  alphabet[2][26] = {{"A""B""C""D""E""F""G""H""I""J""K""L""M""N""O""P""Q""R""S""T""U""V""W""X""Y""Z"},
      {"a""b""c""d""e""f""g""h""i""j""k""l""m""n""o""p""q""r""s""t""u""v""w""x""y""z"}};
@@ -43,6 +43,7 @@ int main(){
         CiphLib[c1]= w;
         c1++;
     }
+    fclose (cipherLibrary);
     
     while (feof(inputFile) == 0 ){
         fscanf(inputFile, "%c", &character1);
@@ -50,8 +51,9 @@ int main(){
         counter ++;
     }
     fclose (inputFile);
+    
    
-    fclose (cipherLibrary);
+    
 
     caps(counter, counter2);
     
@@ -80,22 +82,34 @@ int main(){
                     }
                 }else if(keyED==alphabet[0][3]||keyED==alphabet[1][3]){//decode
                     h = 1;
-                    printf("----------------------------------------- \n \nplease ender the decryption key this can be between 1 and 26 \n:");
-                    int nor;
-                    scanf("%d", &nor);
-                    if ((nor>0)&&(nor<=26)){
-                        int numOfrotation = ((26 - (nor-1)));
-                        if (numOfrotation<0){
-                            numOfrotation = numOfrotation+26;
-                        }          
-                        rot(counter, numOfrotation);
-                        print(counter);
+                    printf("----------------------------------------- \n \nif you have a key press Y if not press N \n:");
+                    int r = 0;
+                    while (r<1){
+                        scanf("%c", &keyYN);
+                        if(keyYN==alphabet[0][24]||keyYN==alphabet[1][24]){
+                            r=1;
+                            printf("----------------------------------------- \n \nplease ender the decryption key this can be between 1 and 26 \n:");
+                            int nor;
+                            scanf("%d", &nor);
+                            if ((nor>0)&&(nor<=26)){
+                                int numOfrotation = ((26 - (nor-1)));
+                                if (numOfrotation<0){
+                                    numOfrotation = numOfrotation+26;
+                                }          
+                                rot(counter, numOfrotation);
+                                print(counter);
+                            }   
+                        }else if(keyYN==alphabet[0][13]||keyYN==alphabet[1][13]){
+                            r=1;
+                            subCDN(counter);
+                            print(counter);
+                        }   
                     }
                 }
             }   // for sub cypher
         } else if (keyRS==alphabet[0][18]||keyRS==alphabet[1][18]){
             i =1;
-             printf("----------------------------------------- \n \nif you wish to encrypt please press E \nif you wish do decrypt pressd D \n:");
+            printf("----------------------------------------- \n \nif you wish to encrypt please press E \nif you wish do decrypt pressd D \n:");
             while (h<1){
                // printf("if you wish to encrypt please press E \n if you wish do decrypt pressd D \n :");  
                 scanf("%c", &keyED);
