@@ -3,9 +3,10 @@
 int numberText[500];
 
 char text[500];
+char word[500];
 char CiphLib[500];
 char outText[500];
-char comword
+char comword[10000];
 
 char  alphabet[2][26] = {{"A""B""C""D""E""F""G""H""I""J""K""L""M""N""O""P""Q""R""S""T""U""V""W""X""Y""Z"},
      {"a""b""c""d""e""f""g""h""i""j""k""l""m""n""o""p""q""r""s""t""u""v""w""x""y""z"}};
@@ -25,10 +26,12 @@ int main(){
     
     int counter = 0;
     int counter2 = 0; 
+    int counter3 = 0;
     
     FILE * inputFile;
     FILE * outputF;
     FILE * cipherLibrary;
+    
     
     
 
@@ -36,7 +39,12 @@ int main(){
     cipherLibrary = fopen("SubstitutionCipherLibrary.txt","r");
     outputF = fopen("output.txt", "w");
     
- 
+    while (feof(inputFile) == 0 ){
+        char w;
+        fscanf(inputFile, "%s", &w);
+        word[counter3]= w;
+         counter3++;
+    }
     
     while (feof(inputFile) == 0 ){
         fscanf(inputFile, "%c", &character1);
@@ -79,10 +87,10 @@ int main(){
                                 printf("%c ", outText[i]);
                                 fprintf(outputF,"%c", outText[i]);
                             }
-                   // }else {
                         
                     }
-                }else if(keyED==alphabet[0][3]||keyED==alphabet[1][3]){
+                    
+                }else if(keyED==alphabet[0][3]||keyED==alphabet[1][3]){//decode
                     h = 1;
                     printf("please ender the decryption key this can be between 1 and 26 \n :");
                      int nor;
@@ -125,11 +133,11 @@ int main(){
                     
                 } else if(keyED==alphabet[0][3]||keyED==alphabet[1][3]){
                     i = 1;
-                    void subCd(int counter2);
+                    void subCd(int counter3);
                     
                     for (int i= 0;i<=(counter);i++){
-                        printf("%c ", outText[i]);
-                        fprintf(outputF,"%c", outText[i]);
+                        printf("%c ", word[i]);
+                        //fprintf(outputF,"%c", outText[i]);
                         
                         }
                 }
@@ -185,19 +193,31 @@ void subC(int counter2){
     }
 }
 
+
+
+
 void subCD(int counter2){
-     for (int x = 0; x<=counter2; x++){
-         int bool2 = 0;
-         for (int z = 0; z<=28; z++){
-             if (text[x]==alphabet[0][z]){
-                 bool2 = 1;
-                 outText[x] = CiphLib[25-z];
-            }else if((z>=27) && bool2==0){
-                outText[x] = text[x];
-            }
-        }
+    
+    //char gKey[25];
+    /*
+    //FILE * comWordLib;
+    //FILE * 
+    
+    //inputFile = fopen("commonword.txt", "r");
+    char word;
+    int c = 0;
+      while (feof(inputFile) == 0 ){
+        fscanf(inputFile, "%s", &word);
+        comword[c]= word;
+        c++;
+        
     }
+    */
 }
+
+
+
+
 
 
 void caps(int counter, int counter2){
