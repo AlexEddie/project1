@@ -1,12 +1,15 @@
 #include <stdio.h>
 //void rotationCipher(int count, int rotNun );
+int numberText[500];
 
 char text[500];
 char CiphLib[500];
-int numberText[500];
 char outText[500];
+char comword
+
 char  alphabet[2][26] = {{"A""B""C""D""E""F""G""H""I""J""K""L""M""N""O""P""Q""R""S""T""U""V""W""X""Y""Z"},
      {"a""b""c""d""e""f""g""h""i""j""k""l""m""n""o""p""q""r""s""t""u""v""w""x""y""z"}};
+     
 char character1;
 char character2;
 char grb;
@@ -15,6 +18,7 @@ char grb;
 void caps(int counter, int counter2);
 void rot(int counter, int numOfrotation);
 void subC(int counter2);
+void subCD(int counter2);
 
 int main(){
     
@@ -67,18 +71,38 @@ int main(){
                     int nor;
                     scanf("%d", &nor);
                     if ((nor>0)&&(nor<26)){
-                        int numOfrotation = nor;
+                        int numOfrotation = nor-1;
                         //printf("\n \n %d",numOfrotation);
-                          for (int i= 0;i<=(counter);i++){
+                         
+                        rot(counter, numOfrotation);
+                        for (int i= 0;i<=(counter-1);i++){
                                 printf("%c ", outText[i]);
                                 fprintf(outputF,"%c", outText[i]);
                             }
-                        rot(counter, numOfrotation);
-                    }else {
+                   // }else {
                         
                     }
                 }else if(keyED==alphabet[0][3]||keyED==alphabet[1][3]){
                     h = 1;
+                    printf("please ender the decryption key this can be between 1 and 26 \n :");
+                     int nor;
+                    scanf("%d", &nor);
+                    if ((nor>0)&&(nor<=26)){
+                        
+                        int numOfrotation = ((25 - (nor-1)));
+                        if (numOfrotation<0){
+                            numOfrotation = numOfrotation+25;
+                        }                        
+                        //printf(" %d /n", numOfrotation);
+                         
+                        rot(counter, numOfrotation);
+                        
+                        for (int i= 0;i<=(counter-1);i++){
+                               printf("%c", outText[i]);
+                                fprintf(outputF,"%c", outText[i]);
+                            }
+                        }
+
                 //}else if (keyED!=NULL){
                     //printf("you have entered an invale input \n if you wish to encrypt please press ""e"" if you wish do decrypt press""d""");
                 }
@@ -86,22 +110,36 @@ int main(){
             }
 
         }else if (keyRS==alphabet[0][18]||keyRS==alphabet[1][18]){
-            i = 1;
-        //}else {
-        //    printf("you have entered an invale input \n pleses press R if you wish to uses the rotation cipher or S substitution cipher ");
+            i = 0;
+            while (i<1){
+                printf("if you wish to encrypt please press E \n if you wish do decrypt pressd D \n :");
+                scanf("%c", &keyED);
+                if(keyED==alphabet[0][4]||keyED==alphabet[1][4]){
+                    i=1;
+                    subC(counter2);
+                    for (int i= 0;i<=(counter);i++){
+                        printf("%c ", outText[i]);
+                        fprintf(outputF,"%c", outText[i]);
+                        }
+                        
+                    
+                } else if(keyED==alphabet[0][3]||keyED==alphabet[1][3]){
+                    i = 1;
+                    void subCd(int counter2);
+                    
+                    for (int i= 0;i<=(counter);i++){
+                        printf("%c ", outText[i]);
+                        fprintf(outputF,"%c", outText[i]);
+                        
+                        }
+                }
+
+                    
+                }
+
+            }
+        
         }
-    }
-     //rot(counter, numOfrotation);
-     
-     //subC(counter2);
-     
-    
-//  for (int i= 0;i<=(counter2);i++){
-      
-    //  printf("%c ", outText[i]);
-      //fprintf(outputF,"%c", CiphLib[i]);
- // }
-     
   fclose (outputF);
  
   return 0;
@@ -119,8 +157,8 @@ void rot(int counter, int numOfrotation){
                     numberText[z]=q+numOfrotation;
                     outText[z]= alphabet[0][q+numOfrotation];
                 }else {
-                    numberText[z]= ((q+numOfrotation)-26);
-                    outText[z]= alphabet[0][(q+numOfrotation)-26];
+                    numberText[z]= ((q+numOfrotation)-25);
+                    outText[z]= alphabet[0][(q+numOfrotation)-25];
                 }
             }else if((q>=27) && bool1==0){
                 outText[z] = text[z];
@@ -131,7 +169,7 @@ void rot(int counter, int numOfrotation){
 }
 
 
-//Substitution Cipher
+//Substitution Cipher encoder 
 
 void subC(int counter2){
      for (int x = 0; x<=counter2; x++){
@@ -140,6 +178,20 @@ void subC(int counter2){
              if (text[x]==alphabet[0][z]){
                  bool2 = 1;
                  outText[x] = CiphLib[z];
+            }else if((z>=27) && bool2==0){
+                outText[x] = text[x];
+            }
+        }
+    }
+}
+
+void subCD(int counter2){
+     for (int x = 0; x<=counter2; x++){
+         int bool2 = 0;
+         for (int z = 0; z<=28; z++){
+             if (text[x]==alphabet[0][z]){
+                 bool2 = 1;
+                 outText[x] = CiphLib[25-z];
             }else if((z>=27) && bool2==0){
                 outText[x] = text[x];
             }
