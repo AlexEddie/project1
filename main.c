@@ -215,13 +215,13 @@ void subCDN(int counter){
     for(int x = 0;x<500;x++){
         printf("%c ", text[x]);
     }
-    
+    //if (text[z]==alphabet[0][q]){
         int j = 0;
         for (int y =0; y<500; y++) {
             
             for (int p = 0;p<25;p++){
                 //printf("%c %c\n",alphabet[0][p],text[y] );
-                if (alphabet[0][p]==text[y]){
+                if (text[y]==alphabet[0][p]){
                     j++;
                     
             }
