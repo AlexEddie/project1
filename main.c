@@ -1,12 +1,16 @@
 #include <stdio.h>
+#include <string.h>
 
+#define CHARNUMBER (31)
 
 int numberText[500];
+//int CHARNUMBER = CHARNUMBER;
 char text[500];
 //char word[500][16];
 char CiphLib[30];
 char outText[500];
 char wordLibray[10001][16];
+//char wordArray[26][CHARNUMBER][16];
 
 char  alphabet[2][26] = {{"A""B""C""D""E""F""G""H""I""J""K""L""M""N""O""P""Q""R""S""T""U""V""W""X""Y""Z"},
      {"a""b""c""d""e""f""g""h""i""j""k""l""m""n""o""p""q""r""s""t""u""v""w""x""y""z"}};
@@ -40,16 +44,7 @@ int main(){
     wordLib = fopen("wordLibrary.txt", "r");
     inputFile = fopen("inputStuff.txt", "r");
     cipherLibrary = fopen("SubstitutionCipherLibrary.txt","r");
-   
-   /*
-     for (int n=0; n<500; n++){
-        fscanf(inputFile,"%s", b );
-        for (int m =0; m<16;m++){
-            word[n][m]= b[m];
-        }
-    }
-    
-  */
+  
    for (int n=0; n<10001; n++){
         fscanf(wordLib,"%s", a);
         for (int m =0; m<16;m++){
@@ -116,7 +111,7 @@ int main(){
                                     numOfrotation = numOfrotation+26;
                                 }          
                                 rot(counter, numOfrotation);
-                                print(counter);
+                                //print(counter);
                             }   
                         }else if(keyYN==alphabet[0][13]||keyYN==alphabet[1][13]){
                             r=1;
@@ -195,6 +190,7 @@ void subCD(int counter2){
             }
         }
     }
+
 }
 
 void subCDN(int counter){
@@ -203,48 +199,52 @@ void subCDN(int counter){
 
 
 
-// rotation cipher 
+//rotation decipher 
 void rotNK(int counter){
-    int bool1= 0;
+    char wordArray[26][CHARNUMBER][16];
     //int score=0;
-    char wordArray[27][31];
+    char tempchar[1000];
+    //char wordArray[26][CHARNUMBER][16];
+  
+   FILE * tempfile;
+        tempfile = fopen("tempdatastore.txt","w+");
     
-    for (int v = 0; v<26 ; v++){
+    
+    for(int t =0; t<26; t++){
         
-        for (int j = 0; j<10; j++){
-            
-            for (int d =0; d<28; d++){
-                //printf("--%c = %c..\n", text[j] , alphabet[0][d]);
-                if (text[j] == alphabet[0][d]){
-                    
-                    bool1 = 1;
-                    if (d<=25){
-                        wordArray[v][j] = alphabet[0][d];
-                        
-                    }else {
-                        wordArray[v][j]= alphabet[0][d];
-                        
-                    }
-                }else if((d>=27) && bool1==0){
-                    //printf("hey");
-                    wordArray[v][j] = text[d];
-                }
+        rot(CHARNUMBER,t);
+        
+        for (int p=0; p<CHARNUMBER; p++){
+            //printf("%c",outText[p]);
+            fprintf(tempfile,"%c",outText[p]);
+        }
+       
+       //printf("\n");
+        //tempfile = fopen("tempdatastore.txt","r");
+        for (int n=0; n<CHARNUMBER; n++){
+            fscanf(tempfile,"%s ", tempchar);
+            for(int l =0; l <16;l++){
+                //printf("%c ", tempchar[l]);
+            }
+            for (int m =0; m<16;m++){
+               wordArray[t][n][m] = tempchar[m];
             }
         }
     }
-    for(int a =0; a<26 ;a++){
-        for (int f = 0; f <30; f++){
-            printf("%c ",wordArray[a][f]);
+    for (int th =0; th<27;th++){
+        
+        for (int jk =0; jk<CHARNUMBER;jk++){
+         //printf("\n %c\n why", wordArray[th][jk][1]);
+         //printf("\n heyenhawjdwaijwaidawidwaiwadiaw\n");
         }
-        printf("\n");
 
     }
-
     
-   
-   //printf(
 }
 
+
+
+// rotation cipher 
 void rot(int counter, int numOfrotation){
     for (int z=0; z<=counter; z++){
         int bool1 = 0;
