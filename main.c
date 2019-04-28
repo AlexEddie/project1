@@ -207,25 +207,22 @@ void rotNK(int counter){
     //char wordArray[26][CHARNUMBER][16];
   
    FILE * tempfile;
-        tempfile = fopen("tempdatastore.txt","w+");
+        
     
     
     for(int t =0; t<26; t++){
-        
+        tempfile = fopen("tempdatastore.txt","w+");
         rot(CHARNUMBER,t);
         
         for (int p=0; p<CHARNUMBER; p++){
             //printf("%c",outText[p]);
             fprintf(tempfile,"%c",outText[p]);
         }
-       
        //printf("\n");
-        //tempfile = fopen("tempdatastore.txt","r");
-        for (int n=0; n<CHARNUMBER; n++){
-            fscanf(tempfile,"%s ", tempchar);
-            for(int l =0; l <16;l++){
-                //printf("%c ", tempchar[l]);
-            }
+        for (int n=0; n<16; n++){
+            
+            fscanf(tempfile,"%s", tempchar);
+            //printf("%s", tempchar);
             for (int m =0; m<16;m++){
                wordArray[t][n][m] = tempchar[m];
             }
@@ -234,10 +231,11 @@ void rotNK(int counter){
     for (int th =0; th<27;th++){
         
         for (int jk =0; jk<CHARNUMBER;jk++){
-         //printf("\n %c\n why", wordArray[th][jk][1]);
-         //printf("\n heyenhawjdwaijwaidawidwaiwadiaw\n");
+            for (int i= 0; i<16; i++){
+         printf("%s", wordArray[th][jk]);
+         //printf("\n heyenhawjdwaijwaidawidwaiwadiaw\n");{
+             }
         }
-
     }
     
 }
