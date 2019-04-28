@@ -111,12 +111,12 @@ int main(){
                                     numOfrotation = numOfrotation+26;
                                 }          
                                 rot(counter, numOfrotation);
-                                //print(counter);
+                                print(counter);
                             }   
                         }else if(keyYN==alphabet[0][13]||keyYN==alphabet[1][13]){
                             r=1;
                             rotNK(counter);
-                            print(counter);
+                            //print(counter);
                         }   
                     }
                 }
@@ -203,12 +203,13 @@ void subCDN(int counter){
 void rotNK(int counter){
     char wordArray[26][CHARNUMBER][16];
     //int score=0;
-    char tempchar[1000];
+    char tempchar[16];
+    char numstring[CHARNUMBER];
     //char wordArray[26][CHARNUMBER][16];
   
-   FILE * tempfile;
-        
-    
+    FILE * tempfile;
+    //FILE * temp;
+    //temp = fopen("temp.txt","w+");
     
     for(int t =0; t<26; t++){
         tempfile = fopen("tempdatastore.txt","w+");
@@ -218,26 +219,49 @@ void rotNK(int counter){
             //printf("%c",outText[p]);
             fprintf(tempfile,"%c",outText[p]);
         }
-       //printf("\n");
-        for (int n=0; n<16; n++){
+        fclose(tempfile);
+        tempfile = fopen("tempdatastore.txt","r");
+       //fprintf(tempfile,"\n");
+       fscanf(tempfile,"%s", numstring);
+       
+       int size =strlen(numstring);
+       //printf("%d \n",size);
+        for (int n=0; n< 7; n++){
             
             fscanf(tempfile,"%s", tempchar);
+            
             //printf("%s", tempchar);
-            for (int m =0; m<16;m++){
+            for (int m =0; m<=16;m++){
                wordArray[t][n][m] = tempchar[m];
             }
         }
+        fclose(tempfile);
     }
-    for (int th =0; th<27;th++){
+    //for (int th =0; th<27;th++){
         
-        for (int jk =0; jk<CHARNUMBER;jk++){
-            for (int i= 0; i<16; i++){
-         printf("%s", wordArray[th][jk]);
+        //for (int jk =0; jk<CHARNUMBER;jk++){
+        
+         //printf("%s ", wordArray[th][jk]);
          //printf("\n heyenhawjdwaijwaidawidwaiwadiaw\n");{
-             }
+             
+        //}
+        //printf("\n");
+    //}
+    for (int a=0; a<=26;a++){
+        int scorebord [27];
+        int score=0;
+        for (int d=0; d<=9;d++){
+            for (int s=0; s<=10001;s++){
+                if (strcmp(wordArray[a][d], wordLibray[s]) == 0 ){
+                    score++;
+                    
+                }
+            }
         }
+        scorebord[a] = score;
+        printf("key is: %d score is: %d\n", a, score);
+        
     }
-    
 }
 
 
