@@ -208,8 +208,8 @@ void rotNK(int counter){
     //char wordArray[26][CHARNUMBER][16];
   
     FILE * tempfile;
-    //FILE * temp;
-    //temp = fopen("temp.txt","w+");
+    FILE * temp;
+    temp = fopen("temp.txt","w");
     
     for(int t =0; t<26; t++){
         tempfile = fopen("tempdatastore.txt","w+");
@@ -224,7 +224,7 @@ void rotNK(int counter){
        //fprintf(tempfile,"\n");
        fscanf(tempfile,"%s", numstring);
        
-       int size =strlen(numstring);
+       //int size =strlen(numstring);
        //printf("%d \n",size);
         for (int n=0; n< 7; n++){
             
@@ -237,31 +237,43 @@ void rotNK(int counter){
         }
         fclose(tempfile);
     }
-    //for (int th =0; th<27;th++){
+   // for (int th =0; th<27;th++){
+       // fprintf(temp,"%d  ",th);
+       // for (int jk =0; jk<CHARNUMBER;jk++){
         
-        //for (int jk =0; jk<CHARNUMBER;jk++){
-        
-         //printf("%s ", wordArray[th][jk]);
+        // fprintf(temp,"%s ", wordArray[th][jk]);
          //printf("\n heyenhawjdwaijwaidawidwaiwadiaw\n");{
              
         //}
-        //printf("\n");
+       // fprintf(temp,"\n ");
     //}
+    if (wordArray[0][0] == wordLibray[2847] ){
+                    printf("hey");
+                    //score++;
+                    
+    }else {
+        printf("%s",wordLibray[2847]);
+        printf("why");
+    }
+    /*
     for (int a=0; a<=26;a++){
         int scorebord [27];
         int score=0;
         for (int d=0; d<=9;d++){
-            for (int s=0; s<=10001;s++){
-                if (strcmp(wordArray[a][d], wordLibray[s]) == 0 ){
+            for (int s=0; s<=10000;s++){
+                fprintf(temp,"%s ", wordArray[a][d]);
+                if (wordArray[a][d] == wordLibray[s] ){
+                    printf("%d\n", s);
                     score++;
                     
                 }
             }
         }
-        scorebord[a] = score;
-        printf("key is: %d score is: %d\n", a, score);
+        */
+        //scorebord[a] = score;
+        //printf("key is: %d score is: %d\n", a, scorebord[a]);
         
-    }
+   // }
 }
 
 
