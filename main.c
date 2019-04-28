@@ -9,6 +9,7 @@ char text[500];
 //char word[500][16];
 char CiphLib[30];
 char outText[500];
+char wordin[500][16];
 char wordLibray[10001][16];
 //char wordArray[26][CHARNUMBER][16];
 
@@ -33,26 +34,34 @@ int main(){
     int counter = 0;
     int counter2 = 0; 
     
-    char a[16];
+    //char a[16];
+    char b[16];
     //char b[16];
     //int counter3 = 0;
     
     FILE * inputFile;
     FILE * cipherLibrary;
-    FILE * wordLib;
+    //FILE * wordLib;
     
-    wordLib = fopen("wordLibrary.txt", "r");
+    //wordLib = fopen("wordLibrary.txt", "r");
     inputFile = fopen("inputStuff.txt", "r");
     cipherLibrary = fopen("SubstitutionCipherLibrary.txt","r");
-  
+  /*
    for (int n=0; n<10001; n++){
         fscanf(wordLib,"%s", a);
         for (int m =0; m<16;m++){
             wordLibray[n][m]= a[m];
         }
     }
+    */
+    for (int x = 0;x<500;x++){
+        fscanf(inputFile, "%s",b );
+        for (int z = 0; z<16;z++){
+            wordin[x][z]= b[z];
+        }
+    }
     
-    fclose(wordLib);
+    //fclose(wordLib);
     
     while (feof(cipherLibrary) == 0 ){
         char w;
@@ -174,10 +183,6 @@ void subC(int counter){
 }
 
 
-//void subCDN(int counter){
-    //char gKey[25];
-//}
-
 void subCD(int counter2){
     for (int i =0;i<counter2;i++){
         int bool3 = 0;
@@ -194,83 +199,150 @@ void subCD(int counter2){
 }
 
 void subCDN(int counter){
-    printf("hey");
+    
+    //int wordcountinput[500];
+    //int wordcountlib[10001];
+    //char wordlibsize[10000][16];
+    //char a[16];
+    //char key[26];
+    char letters[26][1]; 
+    //FILE * wordlibsizefile;
+    
+    //wordlibsizefile = fopen("wordlibaraybysize.txt","r");
+    for (int h = 0; h<26; h++){
+        //letters[h][0] = alphabet[0][h]; 
+    }
+    for(int x = 0;x<500;x++){
+        printf("%c ", text[x]);
+    }
+    
+        int j = 0;
+        for (int y =0; y<500; y++) {
+            
+            for (int p = 0;p<25;p++){
+                //printf("%c %c\n",alphabet[0][p],text[y] );
+                if (alphabet[0][p]==text[y]){
+                    j++;
+                    
+            }
+            letters[p][1] = j;            
+            //
+            j = 0;
+        }
+        
+    }
+    for (int x = 0; x<25; x++){
+        //printf("%d\n .....",letters[x][1]);
+    }
+
+    //for (int y =0; y<counter; y++) {
+        for (int p = 0;p<25;p++){
+            //printf("hey");
+            //printf("%c %d\n",letters[p][0],letters[p][1] );
+            //letters[p][1]++;
+        }
+        
+    //}
+     /* 
+      
+     for (int x = 0;x<10000;x++){
+        fscanf(wordlibsizefile, "%s",a );
+        for (int z = 0; z<16;z++){
+            wordlibsize[x][z]= a[z];
+        }
+        wordcountlib[x]= (unsigned)strlen(a);
+        printf ("The sentence entered is %u characters long.\n",(unsigned)strlen(a));
+        printf("\n");
+    }
+    
+    
+    
+    
+    for (int x= 0; x<500; x++){
+        wordcountinput[x] = (unsigned)strlen(wordin[x]); 
+    }   
+    */
+    
 }
 
 
 
 //rotation decipher 
 void rotNK(int counter){
+    char str[16];
     char wordArray[26][CHARNUMBER][16];
-    //int score=0;
+    int max;
+    int key;
     char tempchar[16];
     char numstring[CHARNUMBER];
-    //char wordArray[26][CHARNUMBER][16];
-  
-    FILE * tempfile;
-    //FILE * temp;
-    //temp = fopen("temp.txt","w");
     
+    FILE * wordLib;
+    
+    wordLib = fopen("wordLibrary.txt", "r");
+    
+    for (int n=0; n<10001; n++){
+        fscanf(wordLib,"%s", str);
+        for (int m =0; m<16;m++){
+            wordLibray[n][m]= str[m];
+        }
+    }
+    
+    fclose(wordLib);
+  int scorebord [27];
+    FILE * tempfile;
     for(int t =0; t<26; t++){
         tempfile = fopen("tempdatastore.txt","w+");
         rot(CHARNUMBER,t);
-        
         for (int p=0; p<CHARNUMBER; p++){
             //printf("%c",outText[p]);
             fprintf(tempfile,"%c",outText[p]);
         }
         fclose(tempfile);
         tempfile = fopen("tempdatastore.txt","r");
-       //fprintf(tempfile,"\n");
        fscanf(tempfile,"%s", numstring);
-       
-       //int size =strlen(numstring);
-       //printf("%d \n",size);
         for (int n=0; n< 7; n++){
-            
             fscanf(tempfile,"%s", tempchar);
-            
-            //printf("%s", tempchar);
+
             for (int m =0; m<=16;m++){
                wordArray[t][n][m] = tempchar[m];
             }
         }
         fclose(tempfile);
-    }
-   // for (int th =0; th<27;th++){
-       // fprintf(temp,"%d  ",th);
-       // for (int jk =0; jk<CHARNUMBER;jk++){
         
-        // fprintf(temp,"%s ", wordArray[th][jk]);
-         //printf("\n heyenhawjdwaijwaidawidwaiwadiaw\n");{
-             
-        //}
-       // fprintf(temp,"\n ");
-    //}
+    }
     printf("%s\n",wordArray[0][0]);
-  if (strcmp(wordArray[0][0], wordLibray[284] ) != 0) {
+    if (strcmp(wordArray[0][0], wordLibray[2847] ) == 0) {
                     printf("ok \n" );
                     //score++;
                     
                 }
-    for (int a=0; a<=26;a++){
-        //int scorebord [27];
+    for (int a=0; a<=25;a++){
         int score=0;
         for (int d=0; d<=9;d++){
-            //for (int s = 0 ; s<10001; s++){
-                //printf("1 ");
-                //if (strcmp(wordArray[0][0], wordLibray[s] ) == 0) {
-                  //  printf("%d \n",s );
-                    //score++;
+            for (int s = 0 ; s<10001; s++){
+                
+                if (strcmp(wordArray[a][d], wordLibray[s] ) == 0) {
+                    score++;
                     
-                //}
-            //}
+                }
+            }
         }
         
-        //scorebord[a] = score;
-        //printf("key is: %d score is: %d\n", a, scorebord[a]);
+        scorebord[a] = score;
+        printf("key is: %d score is: %d\n", a+1, scorebord[a]);
         
     }
+    max = scorebord[0];
+    for(int h = 0; h<25; h++){
+        if (scorebord[h]>max){
+            max = scorebord[h];
+            key = h;
+        }
+    } 
+  printf("\nscore is: %d key is %d\n", max, key);  
+  rot(counter, key );
+  print(counter);
+  
 }
 
 
@@ -320,9 +392,11 @@ void caps(int counter, int counter2){
 void print(int counter){
     FILE * outputF;
     outputF = fopen("output.txt", "w");
-    for (int i= 0;i<=(counter-1);i++){
+    for (int i= 0;i<=(counter-3);i++){
         printf("%c", outText[i]);
         fprintf(outputF,"%c", outText[i]);
     }
+    printf("\n");
+    fprintf(outputF,"\n");
     fclose (outputF);
 }
