@@ -208,8 +208,8 @@ void rotNK(int counter){
     //char wordArray[26][CHARNUMBER][16];
   
     FILE * tempfile;
-    FILE * temp;
-    temp = fopen("temp.txt","w");
+    //FILE * temp;
+    //temp = fopen("temp.txt","w");
     
     for(int t =0; t<26; t++){
         tempfile = fopen("tempdatastore.txt","w+");
@@ -247,33 +247,30 @@ void rotNK(int counter){
         //}
        // fprintf(temp,"\n ");
     //}
-    if (wordArray[0][0] == wordLibray[2847] ){
-                    printf("hey");
+    printf("%s\n",wordArray[0][0]);
+  if (strcmp(wordArray[0][0], wordLibray[284] ) != 0) {
+                    printf("ok \n" );
                     //score++;
                     
-    }else {
-        printf("%s",wordLibray[2847]);
-        printf("why");
-    }
-    /*
+                }
     for (int a=0; a<=26;a++){
-        int scorebord [27];
+        //int scorebord [27];
         int score=0;
         for (int d=0; d<=9;d++){
-            for (int s=0; s<=10000;s++){
-                fprintf(temp,"%s ", wordArray[a][d]);
-                if (wordArray[a][d] == wordLibray[s] ){
-                    printf("%d\n", s);
-                    score++;
+            //for (int s = 0 ; s<10001; s++){
+                //printf("1 ");
+                //if (strcmp(wordArray[0][0], wordLibray[s] ) == 0) {
+                  //  printf("%d \n",s );
+                    //score++;
                     
-                }
-            }
+                //}
+            //}
         }
-        */
+        
         //scorebord[a] = score;
         //printf("key is: %d score is: %d\n", a, scorebord[a]);
         
-   // }
+    }
 }
 
 
