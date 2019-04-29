@@ -3,32 +3,42 @@
 
 #define CHARNUMBER (31)
 
-//int numberText[500];
-//int CHARNUMBER = CHARNUMBER;
-char text[500];
-//char word[500][16];
-char CiphLib[30];
-char outText[500];
-char wordin[500][16];
-char wordLibray[10001][16];
-//char wordArray[26][CHARNUMBER][16];
+// all public array that can be call for thoughout the program
+
+char text[500];// make an array that store 500 charitors. it is used to save the input text to.
+
+char CiphLib[30];// make an array that store 30 charitors. it is used to save the cyper key to
+
+char outText[500];//  make an array that store 500 charitors. it is used to save the text befor output to a text file
+
+char wordin[500][16];//  make an array that stores 500 string that can be of lenth 16. it is used for saving word from input text as strings
+
+char wordLibray[10001][16];//  make an array that stores 500 string that can be of lenth 16. is used to save word as string from the top 10000 most common word text doc.
 
 char  alphabet[2][26] = {{"A""B""C""D""E""F""G""H""I""J""K""L""M""N""O""P""Q""R""S""T""U""V""W""X""Y""Z"},
-     {"a""b""c""d""e""f""g""h""i""j""k""l""m""n""o""p""q""r""s""t""u""v""w""x""y""z"}};
+     {"a""b""c""d""e""f""g""h""i""j""k""l""m""n""o""p""q""r""s""t""u""v""w""x""y""z"}};// make an array of 2 array that hold upper case and lower case version of the alphabet.
+     // it is used as reference though out the code
      
-char character1;
-char character2;
-char grb;
 
-void rotNK(int counter);
-void print(int counter);
-void caps(int counter, int counter2);
-void rot(int counter, int numOfrotation);
-void subC(int counter2);
-void subCD(int counter2);
-void subCDN(int counter);
 
-int main(){
+
+void rotNK(int counter);// a function used to find the most likly key and output for a given rotation cipher
+
+void print(int counter);// this  fuction called to print to output to the terminal and output.txt doc
+
+void caps(int counter, int counter2); // this fuction make input array and CiphLib array only contain capital letters
+
+void rot(int counter, int numOfrotation);// this function is call to decriped and encriped rotation ciphers
+
+void subC(int counter2);// this function is called to encriped using a substitution Cypher
+
+void subCD(int counter2);// this function is called to decriped using a substitution Cypher and a key
+
+void subCDN(int counter);// this function is called to decriped using a substitution Cypher and a key. it not finished 
+
+int main(){// function start when theprogram start
+
+    char character1;// makes a character called character1. 
     
     int c1 = 0;
     int counter = 0;
@@ -196,7 +206,7 @@ void subCDN(int counter){
    // char wordlibsize[10000][16];
     //char a[16];
     //char mostcomletter[27];
-    char key[26];
+    //char key[26];
     int letters[27]; 
     //FILE * wordlibsizefile;
     char fhg[2][27]={{"A""B""C""D""E""F""G""H""I""J""K""L""M""N""O""P""Q""R""S""T""U""V""W""X""Y""Z"},{""}};
