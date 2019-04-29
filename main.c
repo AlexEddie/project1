@@ -46,20 +46,7 @@ int main(){
     //wordLib = fopen("wordLibrary.txt", "r");
     inputFile = fopen("inputStuff.txt", "r");
     cipherLibrary = fopen("SubstitutionCipherLibrary.txt","r");
-  /*
-   for (int n=0; n<10001; n++){
-        fscanf(wordLib,"%s", a);
-        for (int m =0; m<16;m++){
-            wordLibray[n][m]= a[m];
-        }
-    }
-    */
-    for (int x = 0;x<500;x++){
-        fscanf(inputFile, "%s",b );
-        for (int z = 0; z<16;z++){
-            wordin[x][z]= b[z];
-        }
-    }
+ 
     
     //fclose(wordLib);
     
@@ -75,11 +62,16 @@ int main(){
         fscanf(inputFile, "%c", &character1);
         text[counter]= character1;
         counter ++;
+    }  
+    for (int x = 0;x<500;x++){
+        fscanf(inputFile, "%s",b );
+        for (int z = 0; z<16;z++){
+            wordin[x][z]= b[z];
+        }
     }
     fclose (inputFile);
-
     caps(counter, counter2);
-    
+
     printf("----------------------------------------- \n \nPlease press R if you wish to uses the  rotation cipher \nor S substitution cipher\n:");
     char keyRS;
     char keyED;
@@ -199,41 +191,43 @@ void subCD(int counter2){
 }
 
 void subCDN(int counter){
-    
+    //for(int x = 0;x<500;x++){
+      ///  printf("%c \n", text[x]);
+    //}
     //int wordcountinput[500];
     //int wordcountlib[10001];
     //char wordlibsize[10000][16];
     //char a[16];
     //char key[26];
-    char letters[26][1]; 
+    int letters[27]; 
     //FILE * wordlibsizefile;
     
     //wordlibsizefile = fopen("wordlibaraybysize.txt","r");
-    for (int h = 0; h<26; h++){
-        //letters[h][0] = alphabet[0][h]; 
-    }
-    for(int x = 0;x<500;x++){
-        printf("%c ", text[x]);
-    }
-    //if (text[z]==alphabet[0][q]){
-        int j = 0;
-        for (int y =0; y<500; y++) {
+    
+    
+        int letterscore = 0;
+        for (int p = 0;p<26;p++){
+            letterscore = 0;
+            for (int y =0; y<counter; y++) {
             
-            for (int p = 0;p<25;p++){
+            
                 //printf("%c %c\n",alphabet[0][p],text[y] );
                 if (text[y]==alphabet[0][p]){
-                    j++;
-                    
+                    letterscore=letterscore+1;
+                      
             }
-            letters[p][1] = j;            
-            //
-            j = 0;
+            letters[p] = letterscore;
         }
+        letterscore =0;
         
     }
-    for (int x = 0; x<25; x++){
-        //printf("%d\n .....",letters[x][1]);
+    for (int b=0; b<25;b++{
+        printf("%d\n ",letters[b]);
     }
+    //for (int x = 0; x<26; x++){
+        //printf("\n%c",alphabet[0][x]);
+        //printf("____%d\n ",letters[x]);
+    //}
 
     //for (int y =0; y<counter; y++) {
         for (int p = 0;p<25;p++){
