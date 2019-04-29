@@ -3,7 +3,7 @@
 
 #define CHARNUMBER (31)
 
-int numberText[500];
+//int numberText[500];
 //int CHARNUMBER = CHARNUMBER;
 char text[500];
 //char word[500][16];
@@ -191,27 +191,21 @@ void subCD(int counter2){
 }
 
 void subCDN(int counter){
-    //for(int x = 0;x<500;x++){
-      ///  printf("%c \n", text[x]);
-    //}
-    //int wordcountinput[500];
-    //int wordcountlib[10001];
-    //char wordlibsize[10000][16];
+   // int wordcountinput[500];
+   // int wordcountlib[10001];
+   // char wordlibsize[10000][16];
     //char a[16];
-    //char key[26];
+    //char mostcomletter[27];
+    char key[26];
     int letters[27]; 
     //FILE * wordlibsizefile;
+    char fhg[2][27]={{"A""B""C""D""E""F""G""H""I""J""K""L""M""N""O""P""Q""R""S""T""U""V""W""X""Y""Z"},{""}};
     
     //wordlibsizefile = fopen("wordlibaraybysize.txt","r");
-    
-    
         int letterscore = 0;
         for (int p = 0;p<26;p++){
             letterscore = 0;
             for (int y =0; y<counter; y++) {
-            
-            
-                //printf("%c %c\n",alphabet[0][p],text[y] );
                 if (text[y]==alphabet[0][p]){
                     letterscore=letterscore+1;
                       
@@ -221,40 +215,27 @@ void subCDN(int counter){
         letterscore =0;
         
     }
+  
+    for (int n=0; n<26;n++){
+        fhg[1][n]=letters[n];
+    }
+    for (int ig = 0; ig<26 ;ig++){
+        for(int jg =0; jg<25;jg++){
+            if(fhg[1][jg]<fhg[1][ig]){
+                int temp1 = fhg[1][ig];
+                fhg[1][ig] = fhg[1][jg];
+                fhg[1][jg] = temp1 ;
+                char temp2 = fhg[0][ig];
+                fhg[0][ig] = fhg[0][jg];
+                fhg[0][jg] = temp2 ;
+            }
+        }
+    }
     
     for (int x = 0; x<26; x++){
-        printf("\n%c",alphabet[0][x]);
-        printf("____%d\n ",letters[x]);
-    }
-
-    //for (int y =0; y<counter; y++) {
-        for (int p = 0;p<25;p++){
-            //printf("hey");
-            //printf("%c %d\n",letters[p][0],letters[p][1] );
-            //letters[p][1]++;
-        }
-        
-    //}
-     /* 
-      
-     for (int x = 0;x<10000;x++){
-        fscanf(wordlibsizefile, "%s",a );
-        for (int z = 0; z<16;z++){
-            wordlibsize[x][z]= a[z];
-        }
-        wordcountlib[x]= (unsigned)strlen(a);
-        printf ("The sentence entered is %u characters long.\n",(unsigned)strlen(a));
-        printf("\n");
-    }
-    
-    
-    
-    
-    for (int x= 0; x<500; x++){
-        wordcountinput[x] = (unsigned)strlen(wordin[x]); 
-    }   
-    */
-    
+        //printf("\n%d", fhg[1][x]);
+        //printf("____%c.\n ",fhg[0][x]);
+    } 
 }
 
 
@@ -286,7 +267,6 @@ void rotNK(int counter){
         tempfile = fopen("tempdatastore.txt","w+");
         rot(CHARNUMBER,t);
         for (int p=0; p<CHARNUMBER; p++){
-            //printf("%c",outText[p]);
             fprintf(tempfile,"%c",outText[p]);
         }
         fclose(tempfile);
@@ -347,10 +327,10 @@ void rot(int counter, int numOfrotation){
             if (text[z]==alphabet[0][q]){
                 bool1 = 1;
                 if ((q + numOfrotation)<=25){
-                    numberText[z]=q+numOfrotation;
+                    //numberText[z]=q+numOfrotation;
                     outText[z]= alphabet[0][q+numOfrotation];
                 }else {
-                    numberText[z]= ((q+numOfrotation)-26);
+                    //numberText[z]= ((q+numOfrotation)-26);
                     outText[z]= alphabet[0][(q+numOfrotation)-26];
                 }
             }else if((q>=27) && bool1==0){
@@ -392,3 +372,17 @@ void print(int counter){
     fprintf(outputF,"\n");
     fclose (outputF);
 }
+ /*
+     for (int x = 0;x<10000;x++){
+        fscanf(wordlibsizefile, "%s",a );
+        for (int z = 0; z<16;z++){
+            wordlibsize[x][z]= a[z];
+        }
+        wordcountlib[x]= (unsigned)strlen(a);
+        //printf ("The sentence entered is %u characters long.\n",(unsigned)strlen(a));
+        //printf("\n");
+    }
+    for (int x= 0; x<500; x++){
+        wordcountinput[x] = (unsigned)strlen(wordin[x]); 
+    }   
+    */
