@@ -221,13 +221,11 @@ void subCDN(int counter){
         letterscore =0;
         
     }
-    for (int b=0; b<25;b++{
-        printf("%d\n ",letters[b]);
+    
+    for (int x = 0; x<26; x++){
+        printf("\n%c",alphabet[0][x]);
+        printf("____%d\n ",letters[x]);
     }
-    //for (int x = 0; x<26; x++){
-        //printf("\n%c",alphabet[0][x]);
-        //printf("____%d\n ",letters[x]);
-    //}
 
     //for (int y =0; y<counter; y++) {
         for (int p = 0;p<25;p++){
